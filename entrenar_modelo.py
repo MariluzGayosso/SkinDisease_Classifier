@@ -117,7 +117,12 @@ plt.show()
 # 💾 Guardar modelo y clases
 # ========================
 os.makedirs("modelos", exist_ok=True)
-model.save(MODELO_PATH)
+
+# model.save(MODELO_PATH)
+
+# New – use native Keras format:
+model.save('modelos/model_dermatologico.keras')
+
 print(f"✅ Modelo guardado en: {MODELO_PATH}")
 
 # Guardar clases correctamente
