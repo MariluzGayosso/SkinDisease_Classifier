@@ -46,7 +46,7 @@ try:
     #modelo = load_model("modelos/model_dermatologic.h5")
     
     # New
-    modelo = load_model("modelos/model_dermatologico.keras", compile=False)
+    modelo = load_model("modelos/model_dermatologic.keras", compile=False)
 except Exception as e:
     st.error(f"❌ Error cargando el modelo: {e}")
     st.stop()
