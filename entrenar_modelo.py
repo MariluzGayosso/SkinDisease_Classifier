@@ -15,7 +15,7 @@ BATCH_SIZE = 32
 NUM_EPOCHS = 10
 FINE_TUNE_EPOCHS = 5
 DATASET_PATH = 'dataset_ordenado'
-MODELO_PATH = 'modelos/Model_dermatologic.keras'
+MODELO_PATH = 'modelos/model_dermatologic.keras'
 CLASES_PATH = 'modelos/clases2.json'
 
 # ========================
