@@ -121,7 +121,7 @@ os.makedirs("modelos", exist_ok=True)
 # model.save(MODELO_PATH)
 
 # New – use native Keras format:
-model.save('modelos/model_dermatologico.keras')
+model.save('modelos/model_dermatologic.keras')
 
 print(f"✅ Modelo guardado en: {MODELO_PATH}")
 
