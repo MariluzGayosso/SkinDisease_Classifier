@@ -15,8 +15,8 @@ BATCH_SIZE = 32
 NUM_EPOCHS = 10
 FINE_TUNE_EPOCHS = 5
 DATASET_PATH = 'dataset_ordenado'
-MODELO_PATH = 'modelos/model_dermatologic.keras'
-CLASES_PATH = 'modelos/clases2.json'
+MODELO_PATH = 'modelos/modelo_dermatologic.keras'
+CLASES_PATH = 'modelos/clases.json'
 
 # ========================
 # 📁 Validar ruta del dataset
@@ -110,6 +110,8 @@ plt.ylabel('Precisión')
 plt.legend(loc='lower right')
 plt.grid(True)
 plt.tight_layout()
+
+os.makedirs("modelos", exist_ok=True)
 plt.savefig('modelos/accuracy_plot.png')
 plt.show()
 
@@ -118,16 +120,38 @@ plt.show()
 # ========================
 os.makedirs("modelos", exist_ok=True)
 
-# model.save(MODELO_PATH)
+ruta_absoluta = os.path.abspath(MODELO_PATH)
+print("\n📝 Guardando modelo...")
+print("📂 Carpeta actual:", os.getcwd())
+print("📁 Ruta de guardado:", ruta_absoluta)
 
-# New – use native Keras format:
-model.save('modelos/model_dermatologic.keras')
+try:
+    model.save(ruta_absoluta)
+    print(f"✅ Modelo guardado correctamente en: {ruta_absoluta}")
+except Exception as e:
+    print("❌ Error al guardar el modelo:", e)
 
-print(f"✅ Modelo guardado en: {MODELO_PATH}")
+# Verificar si el archivo se guardó
+if os.path.exists(ruta_absoluta):
+    print("✅ Verificación: el archivo fue guardado exitosamente.")
+else:
+    print("❌ Verificación: el archivo NO fue encontrado tras intentar guardarlo.")
 
-# Guardar clases correctamente
-with open(CLASES_PATH, 'w', encoding='utf-8') as f:
-    json.dump(train_gen.class_indices, f, ensure_ascii=False, indent=4)
+# Guardar pesos
+try:
+    pesos_path = os.path.abspath("modelos/pesos_temporales.h5")
+    model.save_weights(pesos_path)
+    print("✅ Pesos guardados correctamente en:", pesos_path)
+except Exception as e:
+    print("❌ Error al guardar los pesos:", e)
 
-print(f"✅ Clases guardadas en: {CLASES_PATH}")
-print("✅ Entrenamiento completo.")
+# Guardar clases
+try:
+    with open(CLASES_PATH, 'w', encoding='utf-8') as f:
+        json.dump(train_gen.class_indices, f, ensure_ascii=False, indent=4)
+    print(f"✅ Clases guardadas en: {os.path.abspath(CLASES_PATH)}")
+except Exception as e:
+    print("❌ Error al guardar clases:", e)
+
+print("✅ Entrenamiento y guardado completo. 🧠🎉")
+c

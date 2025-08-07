@@ -1,5 +1,5 @@
 services:
-  - type: web
+ - type: web
     name: skindisease-app
     env: python
     plan: free
