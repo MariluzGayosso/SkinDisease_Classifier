@@ -19,7 +19,7 @@ st.set_page_config(
 st.markdown("""
     <style>
         .title {
-            font-size:38px !important;
+            font-size:36px !important;
             text-align:center;
         }
         .subtitle {
