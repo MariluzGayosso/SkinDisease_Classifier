@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import json
 import matplotlib.pyplot as plt
+import os
 
 # ======================
 # 🎨 CONFIGURACIÓN VISUAL
@@ -52,18 +53,17 @@ st.markdown('<div class="subtitle">Sube una imagen y deja que la IA analice la p
 
 modelo = None
 
-try:
-    modelo = load_model("modelos/model_dermatologic.h5", compile=False)
-    st.success("✅ Modelo .h5 cargado correctamente.")
-except Exception as e_h5:
-    st.warning(f"⚠️ No se pudo cargar el modelo .h5: {e_h5}")
-    try:
-        modelo = load_model("modelos/model_dermatologico.keras", compile=False)
-        st.success("✅ Modelo .keras cargado correctamente.")
-    except Exception as e_keras:
-        st.error(f"❌ Error cargando ambos modelos: {e_keras}")
-        st.stop()
+MODEL_PATH = "modelos/model_dermatologico.keras"
 
+if os.path.exists(MODEL_PATH):
+    try:
+        modelo = load_model(MODEL_PATH, compile=False)
+        st.success("✅ Modelo cargado correctamente.")
+    except Exception as e:
+        st.error(f"❌ Error al cargar el modelo: {e}")
+else:
+    st.error(f"❌ No se encontró el archivo del modelo en la ruta: {MODEL_PATH}")
+    
 
 # ======================
 # 🔠 Cargar clases
