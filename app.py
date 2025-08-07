@@ -53,7 +53,7 @@ st.markdown('<div class="subtitle">Sube una imagen y deja que la IA analice la p
 
 modelo = None
 
-MODEL_PATH = "modelos/model_dermatologico.keras"
+MODEL_PATH = "modelos/modelo_dermatologic.keras"
 
 if os.path.exists(MODEL_PATH):
     try:
