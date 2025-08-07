@@ -42,14 +42,28 @@ st.markdown('<div class="subtitle">Sube una imagen y deja que la IA analice la p
 # ======================
 # 📦 Cargar modelo
 # ======================
+#try:
+#    #modelo = load_model("modelos/model_dermatologic.h5")
+   # New
+#    modelo = load_model("modelos/model_dermatologico.keras", compile=False)
+#except Exception as e:
+ #   st.error(f"❌ Error cargando el modelo: {e}")
+ #   st.stop()
+
+modelo = None
+
 try:
-    #modelo = load_model("modelos/model_dermatologic.h5")
-    
-    # New
-    modelo = load_model("modelos/model_dermatologico.keras", compile=False)
-except Exception as e:
-    st.error(f"❌ Error cargando el modelo: {e}")
-    st.stop()
+    modelo = load_model("modelos/model_dermatologic.h5", compile=False)
+    st.success("✅ Modelo .h5 cargado correctamente.")
+except Exception as e_h5:
+    st.warning(f"⚠️ No se pudo cargar el modelo .h5: {e_h5}")
+    try:
+        modelo = load_model("modelos/model_dermatologico.keras", compile=False)
+        st.success("✅ Modelo .keras cargado correctamente.")
+    except Exception as e_keras:
+        st.error(f"❌ Error cargando ambos modelos: {e_keras}")
+        st.stop()
+
 
 # ======================
 # 🔠 Cargar clases
