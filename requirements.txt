@@ -1,11 +1,7 @@
 streamlit==1.21.0
+tensorflow==2.10.1
 tensorflow-cpu==2.10.1
 keras==2.10.0
 numpy==1.23.5
 opencv-python-headless==4.8.0.74
-pillow==9.5.0
-h5py==3.7.0
-matplotlib==3.6.3
-scikit-learn==1.2.2
-pandas==1.5.3
 protobuf==3.19.6
